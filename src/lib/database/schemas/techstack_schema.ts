@@ -16,7 +16,7 @@ export const techstackCategory = sqliteTable("techstack_categories", {
 export const techstack = sqliteTable("techstack", {
   id: integer("id").primaryKey(),
   name: text("name").notNull(),
-  svgCode: text("svg_code"),
+  imgLink: text("img_link"),
   categoryId: integer("category_id").references(() => techstackCategory.id),
 
   createdAt: text("createdAt")
