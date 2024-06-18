@@ -12,6 +12,7 @@
 
 <svelte:head>
   <title>Wildan Haydar Amru</title>
+  <meta name="robots" content="index, follow" />
 </svelte:head>
 
 <main>

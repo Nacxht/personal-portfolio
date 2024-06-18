@@ -4,6 +4,22 @@
   import "../app.css";
 </script>
 
+<svelte:head>
+  <!-- <meta charset="UTF-8" /> -->
+
+  <meta
+    name="description"
+    content="Hello, my name is Wildan Haydar Amru. I am a Junior Developer currently specializing in Backend Development."
+  />
+
+  <meta
+    name="keywords"
+    content="wildan, haydar, amru, portfolio, haydar portfolio, zkyzors, Wildan Haydar Amru, portfolio, web developer, programmer, backend, projects, resume"
+  />
+
+  <meta name="author" content="zkyzors" />
+</svelte:head>
+
 <Navbar />
 
 <div class="page-container">
