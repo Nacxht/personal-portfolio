@@ -8,7 +8,7 @@ import * as intro from "./schemas/intro_schema";
 import * as project from "./schemas/project_schema";
 import * as techstack from "./schemas/techstack_schema";
 
-const sqlite = new Database("portfolio.sqlite");
+const sqlite = new Database("static/portfolio.sqlite");
 
 export const db = drizzle(sqlite, {
   schema: {
