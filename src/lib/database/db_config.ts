@@ -1,5 +1,6 @@
 import { drizzle } from "drizzle-orm/better-sqlite3";
 import Database from "better-sqlite3";
+import { ENVIRONMENT } from "$env/static/private";
 
 import * as blog from "./schemas/blog_schema";
 import * as contact from "./schemas/contact_schema";
@@ -8,7 +9,12 @@ import * as intro from "./schemas/intro_schema";
 import * as project from "./schemas/project_schema";
 import * as techstack from "./schemas/techstack_schema";
 
-const sqlite = new Database("static/portfolio.sqlite");
+let path: string =
+  ENVIRONMENT === "dev"
+    ? "static/portfolio.sqlite"
+    : ".svelte-kit/output/client/portfolio.sqlite";
+
+const sqlite = new Database(path);
 
 export const db = drizzle(sqlite, {
   schema: {
