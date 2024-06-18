@@ -12,7 +12,7 @@ import * as techstack from "./schemas/techstack_schema";
 let path: string =
   ENVIRONMENT === "dev"
     ? "static/portfolio.sqlite"
-    : ".svelte-kit/output/client/portfolio.sqlite";
+    : ".svelte-kit/portfolio.sqlite";
 
 const sqlite = new Database(path);
 
