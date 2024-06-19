@@ -4,9 +4,8 @@ const blogModel = new Blog();
 
 export async function load({ params }) {
   const { title } = params;
-  const blog = await blogModel.getDetail(title);
 
   return {
-    //
+    blog: blogModel.getDetail(title),
   };
 }
