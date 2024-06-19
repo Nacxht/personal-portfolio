@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { Model } from "./model";
-import { project } from "../schemas/project_schema";
+import { blog } from "../schemas/blog_schema";
 
 export class Blog extends Model {
   async getDetail(title: string) {
@@ -14,7 +14,7 @@ export class Blog extends Model {
         screenshots: { columns: { id: true, title: true, imageLink: true } },
       },
 
-      where: eq(project.name, title),
+      where: eq(blog.name, title),
     });
 
     return result;

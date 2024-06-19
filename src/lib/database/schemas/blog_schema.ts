@@ -5,6 +5,7 @@ import { project } from "./project_schema";
 export const blog = sqliteTable("blogs", {
   id: integer("id").primaryKey(),
   thumbnail: text("thumbnail").notNull(),
+  name: text("name").notNull(),
   description: text("description").notNull(),
   projectId: integer("project_id").references(() => project.id),
 
