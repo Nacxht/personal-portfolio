@@ -5,8 +5,16 @@
 </script>
 
 <svelte:head>
-  <!-- <meta charset="UTF-8" /> -->
+  <meta property="og:title" content="Wildan Haydar Amru" />
 
+  <meta
+    property="og:description"
+    content="Portfolio of Wildan Haydar Amru. Hello, my name is Wildan Haydar Amru. I am a Junior Developer currently specializing in Backend Development."
+  />
+
+  <meta property="og:image" content="/favicon.png">
+  <meta property="og:url" content="https://hydev.vercel.app">
+  
   <meta
     name="description"
     content="Hello, my name is Wildan Haydar Amru. I am a Junior Developer currently specializing in Backend Development."
