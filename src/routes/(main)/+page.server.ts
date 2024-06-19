@@ -8,10 +8,6 @@ const projectModel = new Project();
 const techstackModel = new Techstack();
 
 export async function load() {
-  const intro = await introModel.get();
-  const recentProjects = await projectModel.getRecent();
-  const techstack = await techstackModel.getAll();
-
   const badgeContents = [
     `${ageCalculator("2005-05-23")} y/o`,
     "Backend Developer",
@@ -20,9 +16,9 @@ export async function load() {
   ];
 
   return {
-    intro: intro!,
+    intro: introModel.get(),
     badgeContents,
-    recentProjects,
-    techstack,
+    recentProjects: projectModel.getRecent(),
+    techstack: techstackModel.getAll(),
   };
 }

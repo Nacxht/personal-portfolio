@@ -3,7 +3,6 @@
   import * as Card from "$lib/components/ui/card";
 
   export let data;
-  const { contacts } = data;
 </script>
 
 <svelte:head>
@@ -18,60 +17,64 @@
     we can create something amazing together.
   </p>
 
-  <section class="contact-container">
-    <Card.Root>
-      <Card.Header>
-        <Card.Title tag="h4">Links</Card.Title>
-      </Card.Header>
+  {#await data.contacts}
+    <p>Loading Contact Information...</p>
+  {:then contacts}
+    <section class="contact-container">
+      <Card.Root>
+        <Card.Header>
+          <Card.Title tag="h4">Links</Card.Title>
+        </Card.Header>
 
-      <Card.Content>
-        <div class="divider"></div>
-      </Card.Content>
+        <Card.Content>
+          <div class="divider"></div>
+        </Card.Content>
 
-      <Card.Footer>
-        <div class="link-container">
-          {#each contacts as contact}
-            {@const { name, link } = contact}
-
-            {#if link}
-              <Button variant="secondary" href={link} class="capitalize">
-                {name}
-              </Button>
-            {/if}
-          {/each}
-        </div>
-      </Card.Footer>
-    </Card.Root>
-  </section>
-
-  <section class="other">
-    <Card.Root>
-      <Card.Header>
-        <Card.Title tag="h4">Other</Card.Title>
-      </Card.Header>
-
-      <Card.Content>
-        <div class="divider"></div>
-      </Card.Content>
-
-      <Card.Footer>
-        <div class="other-container">
-          <ul>
+        <Card.Footer>
+          <div class="link-container">
             {#each contacts as contact}
-              {@const { name, text } = contact}
+              {@const { name, link } = contact}
 
-              {#if text}
-                <li>
-                  <span class="block large capitalize">{name} :</span>
-                  <span class="block inline-code select-all">{text}</span>
-                </li>
+              {#if link}
+                <Button variant="secondary" href={link} class="capitalize">
+                  {name}
+                </Button>
               {/if}
             {/each}
-          </ul>
-        </div>
-      </Card.Footer>
-    </Card.Root>
-  </section>
+          </div>
+        </Card.Footer>
+      </Card.Root>
+    </section>
+
+    <section class="other">
+      <Card.Root>
+        <Card.Header>
+          <Card.Title tag="h4">Other</Card.Title>
+        </Card.Header>
+
+        <Card.Content>
+          <div class="divider"></div>
+        </Card.Content>
+
+        <Card.Footer>
+          <div class="other-container">
+            <ul>
+              {#each contacts as contact}
+                {@const { name, text } = contact}
+
+                {#if text}
+                  <li>
+                    <span class="block large capitalize">{name} :</span>
+                    <span class="block inline-code select-all">{text}</span>
+                  </li>
+                {/if}
+              {/each}
+            </ul>
+          </div>
+        </Card.Footer>
+      </Card.Root>
+    </section>
+  {/await}
 </main>
 
 <style lang="postcss">

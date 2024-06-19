@@ -5,7 +5,6 @@
 
   // Data
   export let data;
-  const { techstackCategory } = data;
 </script>
 
 <svelte:head>
@@ -13,33 +12,37 @@
 </svelte:head>
 
 <main class="space-y-3">
-  {#each techstackCategory as category}
-    {@const { name, techstack } = category}
+  {#await data.techstackCategory}
+    <p>Loading Techstack</p>
+  {:then techstackCategory}
+    {#each techstackCategory as category}
+      {@const { name, techstack } = category}
 
-    <Card.Root>
-      <Card.Header>
-        <Card.Title tag="h4">{name}</Card.Title>
-      </Card.Header>
+      <Card.Root>
+        <Card.Header>
+          <Card.Title tag="h4">{name}</Card.Title>
+        </Card.Header>
 
-      <Card.Content>
-        <div class="techstack-container">
-          {#each techstack as tech}
-            {@const { name, imgLink } = tech}
+        <Card.Content>
+          <div class="techstack-container">
+            {#each techstack as tech}
+              {@const { name, imgLink } = tech}
 
-            <Tooltip.Root>
-              <Tooltip.Trigger class="cursor-default">
-                <img src={imgLink} alt={name} />
-              </Tooltip.Trigger>
+              <Tooltip.Root>
+                <Tooltip.Trigger class="cursor-default">
+                  <img src={imgLink} alt={name} />
+                </Tooltip.Trigger>
 
-              <Tooltip.Content>
-                <p class="text-black capitalize">{snakeToNormal(name)}</p>
-              </Tooltip.Content>
-            </Tooltip.Root>
-          {/each}
-        </div>
-      </Card.Content>
-    </Card.Root>
-  {/each}
+                <Tooltip.Content>
+                  <p class="text-black capitalize">{snakeToNormal(name)}</p>
+                </Tooltip.Content>
+              </Tooltip.Root>
+            {/each}
+          </div>
+        </Card.Content>
+      </Card.Root>
+    {/each}
+  {/await}
 </main>
 
 <style lang="postcss">

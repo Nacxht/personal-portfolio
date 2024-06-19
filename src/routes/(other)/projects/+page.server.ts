@@ -5,11 +5,8 @@ const projectModel = new Project();
 const techstackModel = new Techstack();
 
 export async function load() {
-  const projects = await projectModel.get();
-  const techstack = await techstackModel.getAll();
-
   return {
-    projects,
-    techstack,
+    projects: projectModel.get(),
+    techstack: techstackModel.getAll(),
   };
 }

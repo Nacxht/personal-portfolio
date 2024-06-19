@@ -9,20 +9,44 @@
   const { projects, techstack } = data;
 
   // Project
-  let projectList = projects;
+  let filteredProjectList: {
+    id: number;
+    name?: string;
+    description?: string;
+    techstack?: string;
+    createdAt?: string;
+    updatedAt?: string;
+  }[] = [];
+
+  // Search status
+  let isNotFound: boolean = false;
 
   // Input value
   let search: string = "";
 
   // Search handler
   $: if (search) {
-    const fuse = new Fuse(projects, { distance: 20, keys: ["name"] });
+    async function searchHandler(search: string) {
+      const fuse = new Fuse(await projects, { distance: 20, keys: ["name"] });
 
-    projectList = fuse
-      .search(search.replaceAll(" ", "_"))
-      .map((property) => property.item);
+      const result = fuse
+        .search(search.replaceAll(" ", "_"))
+        .map((property) => property.item);
+
+      if (result.length) {
+        filteredProjectList = result;
+        isNotFound = false;
+        return;
+      }
+
+      isNotFound = true;
+      return;
+    }
+
+    searchHandler(search);
   } else {
-    projectList = projects;
+    filteredProjectList = [];
+    isNotFound = false;
   }
 </script>
 
@@ -40,38 +64,50 @@
     />
   </section>
 
-  <section class="projects">
-    {#each projectList as project}
-      {@const { name, description, techstack: projectTechstack } = project}
+  {#await data.projects}
+    <p>Loading Projects...</p>
+  {:then projects}
+    {#if !isNotFound}
+      <section class="projects">
+        {#each filteredProjectList.length ? filteredProjectList : projects as project}
+          {@const { name, description, techstack: projectTechstack } = project}
 
-      <a href="/project/{name}">
-        <Card.Root class="h-full">
-          <Card.Header class="min-h-36">
-            <Card.Title class="capitalize">{snakeToNormal(name)}</Card.Title>
-            <Card.Description>{description}</Card.Description>
-          </Card.Header>
+          <a href="/project/{name}">
+            <Card.Root class="h-full">
+              <Card.Header class="min-h-36">
+                <Card.Title class="capitalize"
+                  >{snakeToNormal(`${name}`)}</Card.Title
+                >
+                <Card.Description>{description}</Card.Description>
+              </Card.Header>
 
-          <Card.Content>
-            <div class="divider"></div>
-          </Card.Content>
+              <Card.Content>
+                <div class="divider"></div>
+              </Card.Content>
 
-          <Card.Footer>
-            <div class="techstack-container">
-              {#each projectTechstack.split(",") as projectTech}
-                {@const techstackList = techstack.filter(
-                  (tech) => tech.name === projectTech,
-                )}
+              <Card.Footer>
+                <div class="techstack-container">
+                  {#await data.techstack}
+                    Loading Techstack...
+                  {:then techstack}
+                    {#each `${projectTechstack}`.split(",") as projectTech}
+                      {@const techstackList = techstack.filter(
+                        (tech) => tech.name === projectTech,
+                      )}
 
-                {#each techstackList as tech}
-                  <img src={tech.imgLink} alt={name} class="techstack" />
-                {/each}
-              {/each}
-            </div>
-          </Card.Footer>
-        </Card.Root>
-      </a>
-    {/each}
-  </section>
+                      {#each techstackList as tech}
+                        <img src={tech.imgLink} alt={name} class="techstack" />
+                      {/each}
+                    {/each}
+                  {/await}
+                </div>
+              </Card.Footer>
+            </Card.Root>
+          </a>
+        {/each}
+      </section>
+    {/if}
+  {/await}
 </main>
 
 <style lang="postcss">

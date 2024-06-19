@@ -6,8 +6,7 @@
   import { marked } from "marked";
 
   export let data;
-  const { intro, badgeContents, recentProjects, techstack } = data;
-  const { description, serviceDescription } = intro;
+  const { badgeContents } = data;
 </script>
 
 <svelte:head>
@@ -26,7 +25,13 @@
     </div>
 
     <p>
-      {@html marked(description)}
+      {#await data.intro}
+        Loading Description...
+      {:then intro}
+        {#if intro}
+          {@html marked(intro.description)}
+        {/if}
+      {/await}
     </p>
   </header>
 
@@ -34,50 +39,65 @@
     <h2>recent projects</h2>
 
     <div class="card-container">
-      {#each recentProjects as project}
-        {@const { name, description, techstack: projectTechstack } = project}
+      {#await data.recentProjects}
+        Loading Data...
+      {:then recentProjects}
+        {#each recentProjects as project}
+          {@const { name, description, techstack: projectTechstack } = project}
 
-        <a href="/projects/{name}">
-          <Card.Root class="h-full">
-            <Card.Header class="min-h-36">
-              <Card.Title class="capitalize">{snakeToNormal(name)}</Card.Title>
-              <Card.Description>{description}</Card.Description>
-            </Card.Header>
+          <a href="/projects/{name}">
+            <Card.Root class="h-full">
+              <Card.Header class="min-h-36">
+                <Card.Title class="capitalize">
+                  {snakeToNormal(name)}
+                </Card.Title>
+                <Card.Description>{description}</Card.Description>
+              </Card.Header>
 
-            <Card.Content>
-              <div class="divider"></div>
-            </Card.Content>
+              <Card.Content>
+                <div class="divider"></div>
+              </Card.Content>
 
-            <Card.Footer>
-              <div class="techstack-container">
-                {#each projectTechstack.split(",") as projectTech}
-                  {@const techstackList = techstack.filter(
-                    (tech) => tech.name === projectTech,
-                  )}
+              <Card.Footer>
+                <div class="techstack-container">
+                  {#await data.techstack}
+                    Loading Techstack...
+                  {:then techstack}
+                    {#each projectTechstack.split(",") as projectTech}
+                      {@const techstackList = techstack.filter(
+                        (tech) => tech.name === projectTech,
+                      )}
 
-                  {#each techstackList as tech}
-                    <img src={tech.imgLink} alt={name} class="techstack" />
-                  {/each}
-                {/each}
-              </div>
-            </Card.Footer>
-          </Card.Root>
-        </a>
-      {/each}
-      <Button variant="outline" href="/projects" class="w-full col-span-full"
-        >More Project...</Button
-      >
+                      {#each techstackList as tech}
+                        <img src={tech.imgLink} alt={name} class="techstack" />
+                      {/each}
+                    {/each}
+                  {/await}
+                </div>
+              </Card.Footer>
+            </Card.Root>
+          </a>
+        {/each}
+
+        <Button variant="outline" href="/projects" class="w-full col-span-full">
+          More Project...
+        </Button>
+      {/await}
     </div>
   </article>
 
   <article class="service">
     <h2>service</h2>
 
-    <p>
-      {serviceDescription}
-    </p>
+    {#await data.intro}
+      <p>Loading Description...</p>
+    {:then intro}
+      <p>
+        {intro ? intro.serviceDescription : ""}
+      </p>
 
-    <Button variant="outline" class="capitalize mt-3">contact me</Button>
+      <Button variant="outline" class="capitalize mt-3">contact me</Button>
+    {/await}
   </article>
 </main>
 
