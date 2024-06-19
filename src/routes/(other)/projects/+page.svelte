@@ -72,7 +72,7 @@
         {#each filteredProjectList.length ? filteredProjectList : projects as project}
           {@const { name, description, techstack: projectTechstack } = project}
 
-          <a href="/project/{name}">
+          <a href="/projects/{name}">
             <Card.Root class="h-full">
               <Card.Header class="min-h-36">
                 <Card.Title class="capitalize"
