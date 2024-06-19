@@ -1,4 +1,5 @@
 <script lang="ts">
+  import favicon from "$lib/images/favicon.png";
   import Footer from "$lib/components/layout/footer.svelte";
   import Navbar from "$lib/components/layout/navbar.svelte";
   import "../app.css";
@@ -6,15 +7,15 @@
 
 <svelte:head>
   <meta property="og:title" content="Wildan Haydar Amru" />
+  <meta property="og:image" content={favicon} />
+  <meta property="og:url" content="https://hydev.vercel.app" />
+  <meta name="author" content="zkyzors" />
 
   <meta
     property="og:description"
     content="Portfolio of Wildan Haydar Amru. Hello, my name is Wildan Haydar Amru. I am a Junior Developer currently specializing in Backend Development."
   />
 
-  <meta property="og:image" content="/favicon.png">
-  <meta property="og:url" content="https://hydev.vercel.app">
-  
   <meta
     name="description"
     content="Hello, my name is Wildan Haydar Amru. I am a Junior Developer currently specializing in Backend Development."
@@ -24,8 +25,6 @@
     name="keywords"
     content="wildan, haydar, amru, portfolio, haydar portfolio, zkyzors, Wildan Haydar Amru, portfolio, web developer, programmer, backend, projects, resume"
   />
-
-  <meta name="author" content="zkyzors" />
 </svelte:head>
 
 <Navbar />
