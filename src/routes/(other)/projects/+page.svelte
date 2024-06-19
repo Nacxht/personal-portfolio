@@ -46,7 +46,7 @@
 
       <a href="/project/{name}">
         <Card.Root class="h-full">
-          <Card.Header class="min-h-32">
+          <Card.Header class="min-h-36">
             <Card.Title class="capitalize">{snakeToNormal(name)}</Card.Title>
             <Card.Description>{description}</Card.Description>
           </Card.Header>

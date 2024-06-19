@@ -39,7 +39,7 @@
 
         <a href="/projects/{name}">
           <Card.Root class="h-full">
-            <Card.Header class="min-h-24 md:min-h-28">
+            <Card.Header class="min-h-36">
               <Card.Title class="capitalize">{snakeToNormal(name)}</Card.Title>
               <Card.Description>{description}</Card.Description>
             </Card.Header>
@@ -95,7 +95,7 @@
   }
 
   .recent-projects .techstack-container {
-    @apply flex flex-wrap gap-1;
+    @apply flex flex-wrap gap-3;
   }
 
   .recent-projects img.techstack {

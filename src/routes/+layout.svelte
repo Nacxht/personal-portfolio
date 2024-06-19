@@ -35,7 +35,7 @@
   }
 
   .page-container {
-    @apply container mx-auto lg:max-w-[40rem] my-7 pt-14 px-3
+    @apply container mx-auto max-w-[35rem] md:max-w-[40rem] my-7 pt-14 px-5
     min-h-[80dvh];
   }
 
