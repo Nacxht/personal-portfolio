@@ -12,11 +12,6 @@
   <meta name="author" content="zkyzors" />
 
   <meta
-    property="og:description"
-    content="Portfolio of Wildan Haydar Amru. Hello, my name is Wildan Haydar Amru. I am a Junior Developer currently specializing in Backend Development."
-  />
-
-  <meta
     name="description"
     content="Hello, my name is Wildan Haydar Amru. I am a Junior Developer currently specializing in Backend Development."
   />
