@@ -34,13 +34,15 @@
             {#each techstack as tech}
               {@const { name, imgLink } = tech}
 
-              <Tooltip.Root>
+              <Tooltip.Root openDelay={50}>
                 <Tooltip.Trigger class="cursor-default">
                   <img src={imgLink} alt={name} />
                 </Tooltip.Trigger>
 
-                <Tooltip.Content>
-                  <p class="text-black capitalize">{snakeToNormal(name)}</p>
+                <Tooltip.Content class="bg-secondary">
+                  <p class="capitalize">
+                    {snakeToNormal(name)}
+                  </p>
                 </Tooltip.Content>
               </Tooltip.Root>
             {/each}
