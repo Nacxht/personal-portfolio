@@ -2,6 +2,7 @@
   import { snakeToNormal } from "$lib/utils/string_manipulator.js";
   import * as Card from "$lib/components/ui/card";
   import * as Tooltip from "$lib/components/ui/tooltip";
+  import { Skeleton } from "$lib/components/ui/skeleton/index";
 
   // Data
   export let data;
@@ -13,7 +14,12 @@
 
 <main class="space-y-3">
   {#await data.techstackCategory}
-    <p>Loading Techstack</p>
+    <h4 class="text-center">Loading Techstack...</h4>
+    <div class="techstack-container">
+      <Skeleton class="w-full h-32" />
+      <Skeleton class="w-full h-32" />
+      <Skeleton class="w-full h-32" />
+    </div>
   {:then techstackCategory}
     {#each techstackCategory as category}
       {@const { name, techstack } = category}

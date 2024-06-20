@@ -3,10 +3,11 @@
   import * as Card from "$lib/components/ui/card";
   import { snakeToNormal } from "$lib/utils/string_manipulator.js";
   import Fuse from "fuse.js";
+  import SkeletonCard from "$lib/components/reusable/skeleton-card.svelte";
 
   // Data
   export let data;
-  const { projects, techstack } = data;
+  const { projects } = data;
 
   // Project
   let filteredProjectList: {
@@ -65,7 +66,13 @@
   </section>
 
   {#await data.projects}
-    <p>Loading Projects...</p>
+    <section class="projects">
+      <h4 class="col-span-full text-center">Loading Projects...</h4>
+      <SkeletonCard />
+      <SkeletonCard />
+      <SkeletonCard />
+      <SkeletonCard />
+    </section>
   {:then projects}
     {#if !isNotFound}
       <section class="projects">

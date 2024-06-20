@@ -1,24 +1,53 @@
 <script lang="ts">
-  import Button from "../ui/button/button.svelte";
+  import { Button } from "$lib/components/ui/button/index.js";
   import { HamburgerMenu, Home } from "svelte-radix";
   import * as Dialog from "$lib/components/ui/dialog";
   import { buttonVariants } from "../ui/button";
-  import { beforeNavigate } from "$app/navigation";
+  import { afterNavigate, beforeNavigate } from "$app/navigation";
 
   const pages = ["projects", "experiences", "techstack", "contact"];
+
+  // Anti Navigation
+  let isNavigate: boolean = false;
+
+  beforeNavigate(() => {
+    isNavigate = true;
+  });
+
+  afterNavigate(() => {
+    setTimeout(() => {
+      isNavigate = false;
+    }, 200);
+  });
+
+  $: isNavigate = isNavigate;
 </script>
 
 <nav>
   <div class="nav-container">
     <Button href="/" variant="ghost" size="icon">
+      <!-- {#if isNavigate}
+        <img
+          src="https://api.iconify.design/svg-spinners:270-ring-with-bg.svg?color=%23888888"
+          alt="loader"
+        />
+      {:else} -->
       <Home />
+      <!-- {/if} -->
     </Button>
 
     <Dialog.Root>
       <Dialog.Trigger
         class={buttonVariants({ variant: "ghost", size: "icon" })}
       >
+        <!-- {#if isNavigate}
+          <img
+            src="https://api.iconify.design/svg-spinners:270-ring-with-bg.svg?color=%23888888"
+            alt="loader"
+          />
+        {:else} -->
         <HamburgerMenu />
+        <!-- {/if} -->
       </Dialog.Trigger>
 
       <Dialog.Content>

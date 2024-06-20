@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card";
+  import { Skeleton } from "$lib/components/ui/skeleton/index";
 
   export let data;
 </script>
@@ -18,7 +19,11 @@
   </p>
 
   {#await data.contacts}
-    <p>Loading Contact Information...</p>
+    <h4 class="text-center">Loading Contact...</h4>
+    <section class="space-y-3">
+      <Skeleton class="w-full h-32" />
+      <Skeleton class="w-full h-32" />
+    </section>
   {:then contacts}
     <section class="contact-container">
       <Card.Root>
