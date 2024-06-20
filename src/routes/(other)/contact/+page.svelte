@@ -41,7 +41,12 @@
               {@const { name, link } = contact}
 
               {#if link}
-                <Button variant="secondary" href={link} class="capitalize">
+                <Button
+                  variant="secondary"
+                  href={link}
+                  target="_blank"
+                  class="capitalize"
+                >
                   {name}
                 </Button>
               {/if}
