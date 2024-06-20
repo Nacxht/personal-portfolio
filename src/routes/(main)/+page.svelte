@@ -53,7 +53,9 @@
         {intro ? intro.serviceDescription : ""}
       </p>
 
-      <Button variant="outline" class="capitalize mt-3">contact me</Button>
+      <Button variant="outline" href="/contact" class="capitalize mt-3">
+        contact me
+      </Button>
     {/await}
   </article>
 </main>
