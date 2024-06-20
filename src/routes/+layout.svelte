@@ -1,6 +1,7 @@
 <script lang="ts">
   import favicon from "$lib/images/favicon.png";
   import Footer from "$lib/components/layout/footer.svelte";
+  import OnNavigateLoader from "$lib/components/layout/on-navigate-loader.svelte";
   import Navbar from "$lib/components/layout/navbar.svelte";
   import "../app.css";
 </script>
@@ -22,6 +23,7 @@
   />
 </svelte:head>
 
+<OnNavigateLoader />
 <Navbar />
 
 <div class="page-container">
@@ -43,7 +45,7 @@
 
   /* Typography */
   :global(h1) {
-    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl capitalize mb-2;
   }
 
   :global(h2) {
