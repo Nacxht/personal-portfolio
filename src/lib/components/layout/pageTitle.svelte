@@ -20,4 +20,8 @@
   .divider {
     @apply my-5;
   }
+
+  h2 {
+    @apply font-bold;
+  }
 </style>
