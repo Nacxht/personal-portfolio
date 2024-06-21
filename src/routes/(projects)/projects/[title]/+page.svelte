@@ -2,6 +2,7 @@
   import SkeletonDescription from "$lib/components/reusable/skeleton-description.svelte";
   import { Skeleton } from "$lib/components/ui/skeleton/index";
   import { snakeToNormal } from "$lib/utils/string_manipulator.js";
+  import { marked } from "marked";
 
   // Data
   export let data;
@@ -52,7 +53,7 @@
         <h3 class="font-bold">Description</h3>
 
         <p>
-          {@html blog?.description}
+          {@html marked(blog?.description)}
         </p>
       </section>
 
