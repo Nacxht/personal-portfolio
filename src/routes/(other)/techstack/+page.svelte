@@ -26,7 +26,7 @@
 
       <Card.Root>
         <Card.Header>
-          <Card.Title tag="h4">{name}</Card.Title>
+          <Card.Title tag="h4">{snakeToNormal(name)}</Card.Title>
         </Card.Header>
 
         <Card.Content>

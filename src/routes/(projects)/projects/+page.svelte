@@ -55,6 +55,11 @@
   <title>Projects</title>
 </svelte:head>
 
+<nav>
+  <h2>Projects</h2>
+  <div class="divider"></div>
+</nav>
+
 <main>
   <section class="search">
     <Input
