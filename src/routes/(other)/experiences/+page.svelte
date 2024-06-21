@@ -16,6 +16,6 @@
   }
 
   h1 {
-    @apply text-gray-500;
+    @apply text-gray-500 select-none;
   }
 </style>
