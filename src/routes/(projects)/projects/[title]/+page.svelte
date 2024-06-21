@@ -71,6 +71,10 @@
     @apply space-y-3;
   }
 
+  .thumbnail {
+    @apply flex justify-center;
+  }
+
   .thumbnail img {
     @apply border-2 rounded-md max-w-full;
   }
