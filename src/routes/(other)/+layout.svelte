@@ -3,10 +3,7 @@
 </script>
 
 <PageTitle />
-
-<div class="page-container">
-  <slot />
-</div>
+<slot />
 
 <style lang="postcss">
   /* */
