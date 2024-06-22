@@ -3,9 +3,13 @@
   import { HamburgerMenu, Home } from "svelte-radix";
   import * as Dialog from "$lib/components/ui/dialog";
   import { buttonVariants } from "../ui/button";
-  import { afterNavigate, beforeNavigate } from "$app/navigation";
-
+  import { afterNavigate, beforeNavigate, goto } from "$app/navigation";
   const pages = ["projects", "experiences", "techstack", "contact"];
+
+  // Home Button
+  async function homeHandler() {
+    goto("/");
+  }
 
   // Anti Navigation
   let isNavigate: boolean = false;
@@ -26,15 +30,13 @@
 <nav>
   <div class="nav-container">
     <div class="button-container">
-      <Button href="/" variant="ghost" size="icon">
-        <!-- {#if isNavigate}
-        <img
-          src="https://api.iconify.design/svg-spinners:270-ring-with-bg.svg?color=%23888888"
-          alt="loader"
-        />
-      {:else} -->
+      <Button
+        on:click={homeHandler}
+        variant="ghost"
+        size="icon"
+        disabled={isNavigate}
+      >
         <Home />
-        <!-- {/if} -->
       </Button>
     </div>
 
@@ -42,6 +44,7 @@
       <Dialog.Root>
         <Dialog.Trigger
           class={buttonVariants({ variant: "ghost", size: "icon" })}
+          disabled={isNavigate}
         >
           <!-- {#if isNavigate}
           <img
