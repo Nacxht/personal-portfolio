@@ -9,7 +9,6 @@ export default {
   dialect: "sqlite",
   driver: "turso",
   dbCredentials: {
-    // url: "portfolio.sqlite",
     url: process.env.DB_URL || "",
     authToken: process.env.DB_AUTH_TOKEN || "",
   },
