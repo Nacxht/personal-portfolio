@@ -15,7 +15,7 @@
 
 <main>
   <header>
-    <h2 class="font-bold text-4xl">wildan haydar amru</h2>
+    <h2>wildan haydar amru</h2>
 
     <div class="badges-container">
       {#each badgeContents as badge}
@@ -62,9 +62,17 @@
 
 <style lang="postcss">
   main {
-    @apply space-y-5;
+    @apply space-y-10;
   }
 
+  h2 {
+    @apply font-extrabold
+  }
+
+  header h2 {
+    @apply md:text-4xl
+  }
+  
   .badges-container {
     @apply flex flex-wrap gap-2;
   }
