@@ -4,7 +4,13 @@
   import * as Dialog from "$lib/components/ui/dialog";
   import { buttonVariants } from "../ui/button";
   import { afterNavigate, beforeNavigate, goto } from "$app/navigation";
-  const pages = ["projects", "experiences", "techstack", "contact"];
+  const pages = [
+    "projects",
+    "techstack",
+    "education",
+    "experiences",
+    "contact",
+  ];
 
   // Home Button
   async function homeHandler() {
@@ -63,8 +69,12 @@
           </Dialog.Header>
 
           <div class="other-navigation-container">
-            {#each pages as page}
-              <Dialog.Close>
+            {#each pages as page, i}
+              <Dialog.Close
+                class={pages.length % 2 !== 0 && i === pages.length - 1
+                  ? "col-span-full"
+                  : ""}
+              >
                 <Button
                   href="/{page}"
                   class="capitalize w-full"
