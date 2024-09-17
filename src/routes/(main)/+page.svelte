@@ -66,13 +66,13 @@
   }
 
   h2 {
-    @apply font-extrabold
+    @apply font-extrabold;
   }
 
   header h2 {
-    @apply md:text-4xl
+    @apply md:text-4xl;
   }
-  
+
   .badges-container {
     @apply flex flex-wrap gap-2;
   }
