@@ -71,6 +71,10 @@
     @apply space-y-3;
   }
 
+  p {
+    @apply text-justify;
+  }
+
   .thumbnail {
     @apply flex justify-center;
   }

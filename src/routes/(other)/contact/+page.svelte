@@ -96,6 +96,10 @@
     @apply space-y-2;
   }
 
+  p {
+    @apply text-justify;
+  }
+
   .link-container {
     @apply flex flex-grow gap-3;
   }

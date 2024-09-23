@@ -73,6 +73,10 @@
     @apply md:text-4xl;
   }
 
+  p {
+    @apply text-justify;
+  }
+
   .badges-container {
     @apply flex flex-wrap gap-2;
   }
